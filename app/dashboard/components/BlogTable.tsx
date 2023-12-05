@@ -80,7 +80,7 @@ const Actions = ({ id }: { id: string }) => {
                     View
                 </Button>
             </Link>
-            <DeleteAlert blogId={id} />
+            <DeleteAlert id={id} />
             <Link href={"/dashboard/blog/edit/" + id}>
                 <Button variant="outline" className="flex items-center gap-2">
                     <Pencil1Icon  /> 
