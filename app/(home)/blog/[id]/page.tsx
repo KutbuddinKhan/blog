@@ -7,7 +7,7 @@ const PROD_URL = process.env.PROD_URL || 'https://dailyblog-nextjs.vercel.app/';
 
 export async function generateStaticParams() {
 	const { data: blogs } = await fetch(
-		`${PROD_URL}/api/blog?id=*`
+		process.env.SITE_URL + "/api/blog?id=*"
 	).then((res) => res.json());
 
 	return blogs;
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
 	const { data: blog } = (await fetch(
-		process.env.PROD_URL + "/api/blog?id=" + params.id
+		process.env.SITE_URL + "/api/blog?id=" + params.id
 	).then((res) => res.json())) as { data: IBlog };
 
 	return {
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
 export default async function page({ params }: { params: { id: string } }) {
 	const { data: blog } = (await fetch(
-		process.env.PROD_URL + "/api/blog?id=" + params.id
+		process.env.SITE_URL + "/api/blog?id=" + params.id
 	).then((res) => res.json())) as { data: IBlog };
 
 	if (!blog?.id) {
