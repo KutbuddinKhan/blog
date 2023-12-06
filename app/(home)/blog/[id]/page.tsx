@@ -3,7 +3,6 @@ import { IBlog } from "@/lib/types";
 import Image from "next/image";
 import BlogContent from "./components/BlogContent";
 
-const PROD_URL = process.env.PROD_URL || 'https://dailyblog-nextjs.vercel.app/';
 
 export async function generateStaticParams() {
 	const { data: blogs } = await fetch(
@@ -21,7 +20,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 	return {
 		title: blog?.title,
 		authors: {
-			name: "chensokheng",
+			name: "Khan kutbuddin",
 		},
 		openGraph: {
 			title: blog?.title,
