@@ -6,7 +6,7 @@ import BlogContent from './components/BlogContent'
 
 export async function generateStaticParams() {
   const { data: blog } = await fetch(
-    process.env.SITE_URL + "/api/blog?id=" + "*"
+    process.env.PROD_URL + "/api/blog?id=" + "*"
     ).then((res) =>
       res.json()
     )
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const { data: blog } = await fetch(
-    process.env.SITE_URL + "/api/blog?id=" + params.id)
+    process.env.PROD_URL + "/api/blog?id=" + params.id)
     .then((res) => res
       .json()) as {
         data: IBlog
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     },
     openGraph: {
       title: blog?.title,
-      url: process.env.SITE_URL+"/blog/"+params.id,
+      url: process.env.PROD_URL+"/blog/"+params.id,
       siteName: "Daily blog",
       images: blog?.image_url,
       type: "website"
