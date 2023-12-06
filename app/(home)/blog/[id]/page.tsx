@@ -3,9 +3,11 @@ import { IBlog } from "@/lib/types";
 import Image from "next/image";
 import BlogContent from "./components/BlogContent";
 
+const PROD_URL = process.env.PROD_URL || 'https://dailyblog-nextjs.vercel.app/';
+
 export async function generateStaticParams() {
 	const { data: blogs } = await fetch(
-		process.env.PROD_URL + "/api/blog?id=*"
+		`${PROD_URL}/api/blog?id=*`
 	).then((res) => res.json());
 
 	return blogs;
